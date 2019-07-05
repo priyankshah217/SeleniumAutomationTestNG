@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" parallel="methods" thread-count="10">
+    <parameter name="hubUrl" value="http://localhost:4444/wd/hub"/>
+    <test name="WebFirefoxTest">
+        <parameter name="browserName" value="firefox-local"/>
+        <!--        Enable below to run on grid-->
+        <!--        <parameter name="browserName" value="firefox-remote"/>-->
+        <classes>
+            <class name="io.automation.AmazonSearchTest"/>
+            <class name="io.automation.GoogleSearchTest"/>
+        </classes>
+    </test>
+    <test name="WebChromeTest">
+        <parameter name="browserName" value="chrome-local"/>
+        <!--        Enable below to run on grid-->
+        <!--        <parameter name="browserName" value="chrome-remote"/>-->
+        <classes>
+            <class name="io.automation.AmazonSearchTest"/>
+            <class name="io.automation.GoogleSearchTest"/>
+        </classes>
+    </test>
+</suite>
