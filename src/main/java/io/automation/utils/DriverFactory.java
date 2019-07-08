@@ -1,5 +1,6 @@
 package io.automation.utils;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,14 +11,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
+
 public class DriverFactory {
   private static Logger LOGGER = LogManager.getLogger(DriverFactory.class);
   private static ThreadLocal<RemoteWebDriver> webDriverThreadLocal = null;
+
+  /**
+   * @return WebDriver
+   */
 
   public static RemoteWebDriver getWebDriver() {
     return webDriverThreadLocal.get();
   }
 
+  /**
+   * @param browserName
+   * @param hubUrl
+   */
   public static void createDriver(String browserName, String hubUrl) {
     RemoteWebDriver driver = null;
     if (browserName.toLowerCase().contains("local")) {
@@ -32,7 +42,8 @@ public class DriverFactory {
       try {
         LOGGER.debug("Launching instance on docker hub, Hub Url is {}", hubUrl);
         LOGGER.debug("Launching instance of {}", browserName);
-        driver = new RemoteWebDriver(new URL(hubUrl), CapabilityFactory.getCapabilities(browserName));
+        driver = new RemoteWebDriver(new URL(hubUrl),
+            CapabilityFactory.getCapabilities(browserName));
       } catch (MalformedURLException e) {
         e.printStackTrace();
       }
@@ -45,12 +56,16 @@ public class DriverFactory {
     webDriverThreadLocal.set(driver);
   }
 
+  /**
+   * Quit Driver
+   */
   public static void quitDriver() {
     RemoteWebDriver remoteWebDriver = webDriverThreadLocal.get();
     if (remoteWebDriver != null) {
       remoteWebDriver.quit();
     }
-    LOGGER.debug("Cleaning up {} session", Objects.requireNonNull(remoteWebDriver).getCapabilities().getBrowserName());
+    LOGGER.debug("Cleaning up {} session", Objects.requireNonNull(remoteWebDriver)
+        .getCapabilities().getBrowserName());
   }
 
 }

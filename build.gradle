@@ -4,6 +4,7 @@
 
 plugins {
     id 'java'
+    id 'checkstyle'
 }
 
 repositories {
@@ -25,6 +26,22 @@ sourceSets {
         }
     }
 }
+def configDir = "${rootDir}/config"
+
+checkstyle {
+    toolVersion '8.19'
+    configFile file("$configDir/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
+
 dependencies {
     testCompile 'org.testng:testng:7.0.0-beta7'
     compile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
@@ -42,6 +59,7 @@ tasks.withType(JavaCompile) {
 }
 
 test {
+    dependsOn checkstyle
     environment("logpath", "$buildDir/log/")
     useTestNG() {
         options {
