@@ -10,7 +10,7 @@ public class BrowserUtil {
                                                  Class<? extends BasePage> page) {
     T t = null;
     try {
-      DriverFactory.getWebDriverThreadLocal().get(url);
+      DriverFactory.getWebDriver().get(url);
       t = (T) Class.forName(page.getName()).getDeclaredConstructor().newInstance();
     } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
       e.printStackTrace();

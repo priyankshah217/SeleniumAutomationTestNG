@@ -9,4 +9,6 @@ public interface WebUtils {
   boolean waitForElementToBePresent(By by);
 
   WebElement getElement(By by);
+
+  String getPageTitle();
 }

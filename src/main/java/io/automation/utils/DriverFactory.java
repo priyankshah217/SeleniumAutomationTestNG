@@ -8,12 +8,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 
 public class DriverFactory {
   private static Logger LOGGER = LogManager.getLogger(DriverFactory.class);
   private static ThreadLocal<RemoteWebDriver> webDriverThreadLocal = null;
 
-  public static RemoteWebDriver getWebDriverThreadLocal() {
+  public static RemoteWebDriver getWebDriver() {
     return webDriverThreadLocal.get();
   }
 
@@ -44,12 +45,12 @@ public class DriverFactory {
     webDriverThreadLocal.set(driver);
   }
 
-  public static void quiteDriver() {
+  public static void quitDriver() {
     RemoteWebDriver remoteWebDriver = webDriverThreadLocal.get();
     if (remoteWebDriver != null) {
       remoteWebDriver.quit();
     }
-    LOGGER.debug("Cleaning up {} session", remoteWebDriver.getCapabilities().getBrowserName());
+    LOGGER.debug("Cleaning up {} session", Objects.requireNonNull(remoteWebDriver).getCapabilities().getBrowserName());
   }
 
 }

@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
 import static io.automation.utils.DriverFactory.createDriver;
-import static io.automation.utils.DriverFactory.quiteDriver;
+import static io.automation.utils.DriverFactory.quitDriver;
 
 public class BaseTest {
   private static Logger LOGGER = LogManager.getLogger(BaseTest.class);
@@ -21,7 +21,7 @@ public class BaseTest {
   @AfterMethod
   public void tearDown() {
     LOGGER.debug("Quitting driver");
-    quiteDriver();
+    quitDriver();
   }
 
 }
