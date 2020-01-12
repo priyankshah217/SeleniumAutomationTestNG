@@ -8,8 +8,12 @@
         <!--        Enable below to run on grid-->
         <!--        <parameter name="browserName" value="firefox-remote"/>-->
         <classes>
-            <class name="io.automation.AmazonSearchTest"/>
-            <class name="io.automation.GoogleSearchTest"/>
+            <class name="io.automation.AmazonSearchTest">
+                <parameter name="URL" value="http://www.amazon.in/"/>
+            </class>
+            <class name="io.automation.GoogleSearchTest">
+                <parameter name="URL" value="http://www.google.co.in/"/>
+            </class>
         </classes>
     </test>
     <test name="WebChromeTest">
@@ -17,8 +21,12 @@
         <!--        Enable below to run on grid-->
         <!--        <parameter name="browserName" value="chrome-remote"/>-->
         <classes>
-            <class name="io.automation.AmazonSearchTest"/>
-            <class name="io.automation.GoogleSearchTest"/>
+            <class name="io.automation.AmazonSearchTest">
+                <parameter name="URL" value="http://www.amazon.in/"/>
+            </class>
+            <class name="io.automation.GoogleSearchTest">
+                <parameter name="URL" value="http://www.google.co.in/"/>
+            </class>
         </classes>
     </test>
 </suite>
