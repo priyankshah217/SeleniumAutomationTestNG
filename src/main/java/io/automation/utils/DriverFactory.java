@@ -29,31 +29,35 @@ public class DriverFactory {
      * @param hubUrl
      */
     public static void createDriver(String browserName, String hubUrl) {
-        RemoteWebDriver driver = null;
+        final RemoteWebDriver driver = getRemoteWebDriver(browserName, hubUrl);
+        if (webDriverThreadLocal == null) {
+            webDriverThreadLocal = ThreadLocal.withInitial(() -> driver);
+            webDriverThreadLocal.set(driver);
+        }
+        LOGGER.debug("Setting up {} driver in threadLocal", browserName);
+        webDriverThreadLocal.set(driver);
+    }
+
+    private static RemoteWebDriver getRemoteWebDriver(String browserName, String hubUrl) {
         if (browserName.toLowerCase().contains("local")) {
             if (browserName.toLowerCase().contains("chrome")) {
                 LOGGER.debug("Launching instance of {}", browserName);
-                driver = new ChromeDriver();
+                return new ChromeDriver();
             } else {
                 LOGGER.debug("Launching instance of {}", browserName);
-                driver = new FirefoxDriver();
+                return new FirefoxDriver();
             }
         } else {
             try {
                 LOGGER.debug("Launching instance on docker hub, Hub Url is {}", hubUrl);
                 LOGGER.debug("Launching instance of {}", browserName);
-                driver = new RemoteWebDriver(new URL(hubUrl),
+                return new RemoteWebDriver(new URL(hubUrl),
                         CapabilityFactory.getCapabilities(browserName));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
         }
-        if (webDriverThreadLocal == null) {
-            RemoteWebDriver finalDriver = driver;
-            webDriverThreadLocal = ThreadLocal.withInitial(() -> finalDriver);
-        }
-        LOGGER.debug("Setting up {} driver in threadLocal", browserName);
-        webDriverThreadLocal.set(driver);
+        return null;
     }
 
     /**
