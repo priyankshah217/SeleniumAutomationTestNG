@@ -10,20 +10,20 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 public class AmazonSearchTest extends BaseTest {
-  private static final String AMAZON_URL = "http://www.amazon.in/";
-  private static Logger LOGGER = LogManager.getLogger(AmazonSearchTest.class);
+    private static final String AMAZON_URL = "http://www.amazon.in/";
+    private static Logger LOGGER = LogManager.getLogger(AmazonSearchTest.class);
 
-  @Test
-  void searchComputer() {
-    LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
-    AmazonHomePage amazonHomePage = BrowserUtil.launchUrl(AMAZON_URL, AmazonHomePage.class);
-    AmazonSearchResultPage amazonSearchResultPage = amazonHomePage.searchFor("Computer");
-  }
+    @Test
+    void searchComputer() {
+        LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
+        AmazonHomePage amazonHomePage = BrowserUtil.launchUrl(AMAZON_URL, AmazonHomePage.class);
+        AmazonSearchResultPage amazonSearchResultPage = amazonHomePage.searchFor("Computer");
+    }
 
-  @Test
-  void searchLaptop() {
-    LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
-    AmazonHomePage amazonHomePage = BrowserUtil.launchUrl(AMAZON_URL, AmazonHomePage.class);
-    AmazonSearchResultPage amazonSearchResultPage = amazonHomePage.searchFor("Laptop");
-  }
+    @Test
+    void searchLaptop() {
+        LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
+        AmazonHomePage amazonHomePage = BrowserUtil.launchUrl(AMAZON_URL, AmazonHomePage.class);
+        AmazonSearchResultPage amazonSearchResultPage = amazonHomePage.searchFor("Laptop");
+    }
 }

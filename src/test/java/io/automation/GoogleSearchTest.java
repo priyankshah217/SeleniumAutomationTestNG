@@ -12,22 +12,22 @@ import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GoogleSearchTest extends BaseTest {
-  private static final String GOOGLE_URL = "http://www.google.co.in/";
-  private static Logger LOGGER = LogManager.getLogger(GoogleSearchTest.class);
+    private static final String GOOGLE_URL = "http://www.google.co.in/";
+    private static Logger LOGGER = LogManager.getLogger(GoogleSearchTest.class);
 
-  @Test
-  void searchSelenium() {
-    LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
-    GoogleHomePage googleHomePage = BrowserUtil.launchUrl(GOOGLE_URL, GoogleHomePage.class);
-    GoogleSearchResultPage googleSearchResultPage = googleHomePage.searchFor("Selenium");
-    assertThat(googleSearchResultPage.getPageTitle()).containsIgnoringCase("Selenium");
-  }
+    @Test
+    void searchSelenium() {
+        LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
+        GoogleHomePage googleHomePage = BrowserUtil.launchUrl(GOOGLE_URL, GoogleHomePage.class);
+        GoogleSearchResultPage googleSearchResultPage = googleHomePage.searchFor("Selenium");
+        assertThat(googleSearchResultPage.getPageTitle()).containsIgnoringCase("Selenium");
+    }
 
-  @Test
-  void searchComputer() {
-    LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
-    GoogleHomePage googleHomePage = BrowserUtil.launchUrl(GOOGLE_URL, GoogleHomePage.class);
-    GoogleSearchResultPage googleSearchResultPage = googleHomePage.searchFor("Computer");
-    assertThat(googleSearchResultPage.getPageTitle()).containsIgnoringCase("Computer");
-  }
+    @Test
+    void searchComputer() {
+        LOGGER.info("Launching {}", Thread.currentThread().getStackTrace()[1].getMethodName());
+        GoogleHomePage googleHomePage = BrowserUtil.launchUrl(GOOGLE_URL, GoogleHomePage.class);
+        GoogleSearchResultPage googleSearchResultPage = googleHomePage.searchFor("Computer");
+        assertThat(googleSearchResultPage.getPageTitle()).containsIgnoringCase("Computer");
+    }
 }

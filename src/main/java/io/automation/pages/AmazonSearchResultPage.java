@@ -1,4 +1,6 @@
 package io.automation.pages;
 
-public class AmazonSearchResultPage {
+import io.automation.base.BasePage;
+
+public class AmazonSearchResultPage extends BasePage {
 }

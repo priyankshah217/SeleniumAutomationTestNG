@@ -59,7 +59,7 @@ tasks.withType(JavaCompile) {
 }
 
 test {
-    dependsOn checkstyle
+//    dependsOn checkstyle
     environment("logpath", "$buildDir/log/")
     useTestNG() {
         options {
